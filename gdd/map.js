@@ -12,7 +12,7 @@ import XYZ from 'ol/source/XYZ';
 var layerWMS = new ol.layer.Tile({
         title: "maerkte",
       source: new ol.source.TileWMS({        
-             url: 'http://141.64.197.87/geoserver/maerkte/wms?',
+             url: 'http://141.64.192.1/geoserver/maerkte/wms?',
              params: {'LAYERS': 'maerkte:weihnachtsmarktshape', 'TILED': true},
              serverType: 'geoserver'
             })
