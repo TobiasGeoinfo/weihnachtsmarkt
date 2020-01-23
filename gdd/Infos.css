@@ -1,0 +1,43 @@
+.heading {
+        background-color:#e60000;
+        border: 5px dottet;
+        font-family: times,serif;front-size:20pt;Verdana;
+        box-sizing: border-box;
+        text-align: center;
+        padding-bottom: 25px;
+        padding-top: 25px;
+         
+         }
+ 
+.title {
+font-size: 275%;
+font-weight: bold;
+color: black;
+padding-right: 150px;
+        }
+ 
+.student {
+    color: white;
+    padding-right: 150px;
+    }
+ 
+.map {
+        height: 100%;
+        width: 85%;
+        display: inline-block;
+         
+      }
+ 
+ 
+  .legend {
+    width: 12%;
+    height: 100%;
+    float: right;
+    padding-right: 30px;
+ 
+  }
+ 
+p{
+font-family: Verdana;
+font-weight: bold;
+}
