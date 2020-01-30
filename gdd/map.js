@@ -4,7 +4,7 @@
 var layerWMS = new ol.layer.Tile({
         title: "maerkte",
       source: new ol.source.TileWMS({        
-             url: 'http://localhost:8080/geoserver/maerkte/wms?',
+             url: 'http://141.64.205.251:8080/geoserver/maerkte/wms?',
              params: {'LAYERS': 'maerkte:weihnachtsmarktshape', 'TILED': true},
              serverType: 'geoserver'
             })
