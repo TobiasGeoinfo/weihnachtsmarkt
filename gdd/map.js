@@ -1,18 +1,10 @@
 
-/*
-import 'ol/ol.css';
-import Map from 'ol/Map';
-import View from 'ol/View';
-import TileLayer from 'ol/layer/Tile';
-import {fromLonLat} from 'ol/proj';
-import XYZ from 'ol/source/XYZ';
-*/
 
 
 var layerWMS = new ol.layer.Tile({
         title: "maerkte",
       source: new ol.source.TileWMS({        
-             url: 'http://141.64.192.1/geoserver/maerkte/wms?',
+             url: 'http://localhost:8080/geoserver/maerkte/wms?',
              params: {'LAYERS': 'maerkte:weihnachtsmarktshape', 'TILED': true},
              serverType: 'geoserver'
             })
@@ -45,7 +37,6 @@ var map = new ol.Map({
 
 
 
-map.setView(view);
 map.on('singleclick', function(evt) {
   document.getElementById('gfi').innerHTML = '';
   var viewResolution = view.getResolution();
@@ -62,81 +53,63 @@ map.on('singleclick', function(evt) {
 });
 
 
-/**
- * Elements that make up the popup.
- */
-var container = document.getElementById('popup');
-var content = document.getElementById('popup-content');
-var closer = document.getElementById('popup-closer');
 
 
-/**
- * Create an overlay to anchor the popup to the map.
- */
-var overlay = new ol.Overlay({
-  element: container,
-  autoPan: true,
-  autoPanAnimation: {
-    duration: 250
-  }
-});
 
 
-/**
- * Add a click handler to hide the popup.
- * @return {boolean} Don't follow the href.
- */
-/*closer.onclick = function() {
-  overlay.setPosition(undefined);
-  closer.blur();
-  return false;
-};
-*/
+/*	
 
-/**
- * Create the map.
- */
-/*var map = new Map({
-  layers: [
-    new TileLayer({
-      source: new TileJSON({
-        url: 'https://api.tiles.mapbox.com/v4/mapbox.natural-earth-hypso-bathy.json?access_token=' + key,
-        crossOrigin: 'anonymous'
-      })
-    })
-  ],
-  
-  overlays: [overlay],
-  target: 'map',
-  view: new View({
-    center: [0, 0],
-    zoom: 2
-  })
-});
-*/
-
-popup = new OpenLayers.Popup("chicken",
-                   new OpenLayers.LonLat(13,52),
-                   new OpenLayers.Size(200,200),
-                   "example popup",
-                   true);
-		map.addPopup(popupp);
-
-/**
- * Add a click handler to the map to render the popup.
- */
 map.on('singleclick', function(evt) {
-  var coordinate = evt.coordinate;
-  var hdms = ol.coordinate.toStringHDMS(coordinate);
 
-  content.innerHTML = '<p>You clicked here:</p><code>' + hdms+
-  '</code>';
-  overlay.setPosition(coordinate);
+    // Hide existing popup and reset it's offset
+    popup.hide();
+    popup.setOffset([0, 0]);
+
+    // Attempt to find a marker from the planningAppsLayer
+    var feature = map.forEachFeatureAtPixel(evt.pixel, function(feature, layer) {
+        return feature;
+    });
+
+    if (feature) {
+
+        var coord = feature.getGeometry().getCoordinates();
+        var props = feature.getProperties();
+        var info = "<h2><a href='" + props.caseurl + "'>" + props.casereference + "</a></h2>";
+            info += "<p>" + props.locationtext + "</p>";
+            info += "<p>Status: " + props.status + " " + props.statusdesc + "</p>";
+        // Offset the popup so it points at the middle of the marker not the tip
+        popup.setOffset([0, -22]);
+        popup.show(coord, info);
+
+    } else {
+
+        var url = layerWMS
+                    .getSource()
+                    .getGetFeatureInfoUrl(
+                        evt.coordinate,
+                        map.getView().getResolution(),
+                        map.getView().getProjection(),
+                        {
+                            'INFO_FORMAT': 'application/json',
+                            'propertyName': 'NAME,AREA_CODE,DESCRIPTIO'
+                        }
+                    );
+
+        reqwest({
+            url: url,
+            type: 'json',
+        }).then(function (data) {
+            var feature = data.features[0];
+            var props = feature.properties;
+            var info = "<h2>" + props.NAME + "</h2><p>" + props.DESCRIPTIO + "</p>";
+            popup.show(evt.coordinate, info);
+        });
+
+    }
+
 });
-/*toLonLat*/
 
-
-
+*/
 
 
 

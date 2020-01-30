@@ -1,20 +1,9 @@
 .map {	
-        height: 100%;
+        height: 90%;
         width: 100%;
 		display: inline-block;
 		
       }
-	  
-.bott {
-	text-align: center;
-
-	font-family:reindeer;
-	color:black;
-	padding:50px;
-	font-size: 250%;
-	background: url(banner2.jpg);
-	
-	}
 	  
 .heading {	/*background-color:#feb24c;
 			border: 3px solid;
@@ -32,7 +21,7 @@
 			
 			font-weight:bold;
 			font-size:500%;
-			padding-right:50px;
+			
 }
 
 .power{
@@ -41,6 +30,17 @@
 			font-size: 200%;
 }
 
+.bott {
+	text-align: center;
+	font-family:reindeer;
+	font-weight:bold;
+	color:black;
+	font-size: 300%;
+	background: url(banner2.jpg);
+	padding-top:50px;
+	
+	}
+	  
 
 
 .legend{
@@ -48,15 +48,17 @@
 			width: 12%;
 			height: 100%;
 			float: right;
-			
 			padding-right: 30px;
 			
 
 }
+/*
 p{
 	font-weight:bold;
 	font-family:Arial;
-}
+}*/
+
+
 
 .gfi{
 	width: 10px;
@@ -65,48 +67,6 @@ p{
 	
 }
 
-.ol-popup {
-        position: absolute;
-        background-color: white;
-        -webkit-filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
-        filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
-        padding: 15px;
-        border-radius: 10px;
-        border: 1px solid #cccccc;
-        bottom: 12px;
-        left: -50px;
-        min-width: 280px;
-      }
-      .ol-popup:after, .ol-popup:before {
-        top: 100%;
-        border: solid transparent;
-        content: " ";
-        height: 0;
-        width: 0;
-        position: absolute;
-        pointer-events: none;
-      }
-      .ol-popup:after {
-        border-top-color: white;
-        border-width: 10px;
-        left: 48px;
-        margin-left: -10px;
-      }
-      .ol-popup:before {
-        border-top-color: #cccccc;
-        border-width: 11px;
-        left: 48px;
-        margin-left: -11px;
-      }
-      .ol-popup-closer {
-        text-decoration: none;
-        position: absolute;
-        top: 2px;
-        right: 8px;
-      }
-      .ol-popup-closer:after {
-        content: "✖";
-      }
 	  
 @font-face {
               font-family: 'reindeer';
